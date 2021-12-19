@@ -8,13 +8,17 @@
     <link rel="stylesheet" href='css/style.css'>
 </head>
 <body>
-    <h1> Hello</h1>
+    <header> 
+    <h1> Hello World! </h1>
+</header>
+<div id="form"> 
     <form action="index.php" method="post">
-        <label > input rss </label>
-        <input type="text" name="url" placeholder="enter rss url">
+        <label > Please Enter Rss.xml  </label>
+        <input type="text" name="url" placeholder="Paste rss.xml">
         <button type="submit" name="submit" > Submit </button>
 
     </form>
+</div>
     <div id="wrapper">
 <div id="feed_div">
 
@@ -27,14 +31,15 @@ if(isset($_POST["url"])){
    
     
   
-    for($x=0; $x<10; $x++) {
+    for($x=1; $x<11; $x++) {
         $item=$rss->channel->item;
-        echo '<p class="title"><a href="'.$item[$x]->link .'">' . $item[$x]->title. "</a></p>";
-     echo "<p class='desc'>" . $item[$x]->description. "</p>";
+        
+        echo '<p class="title"><a href="'.$item[$x-1]->link .'">'.$x.") : " . $item[$x-1]->title. "</a></p>";
+     echo "<p class='desc'>" . $item[$x-1]->description. "</p>";
      };
 
 
-}else{echo "<h1> asdasdasd </h1>";}
+}else{echo "<h1> Here will be loaded Feed </h1>";}
 ?>
 </div>
 </div>
