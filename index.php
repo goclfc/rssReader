@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rss Feed</title>
+    <link rel="stylesheet" href='css/style.css'>
 </head>
 <body>
     <h1> Hello</h1>
@@ -18,22 +19,22 @@
 <div id="feed_div">
 
 <?php
-if(isset($_POST["submit"])){
-    $rss = simplexml_load_file('http://talkerscode.com/rss.xml');
+session_start();
+if(isset($_POST["url"])){
+    $rss = simplexml_load_file($_POST['url']);
     $count=0;
     echo '<h2>'. $rss->channel->title . '</h2>';	
-    foreach ($rss->channel->item as $item) 
-    {
-        $count++;
-
-     echo '<p class="title"><a href="'. $item->link .'">' . $item->title . "</a></p>";
-     echo "<p class='desc'>" . $item->description . "</p>";
-     if(count>7){
-         die;
+   
+    
+  
+    for($x=0; $x<10; $x++) {
+        $item=$rss->channel->item;
+        echo '<p class="title"><a href="'.$item[$x]->link .'">' . $item[$x]->title. "</a></p>";
+     echo "<p class='desc'>" . $item[$x]->description. "</p>";
      };
-    } }
 
 
+}else{echo "<h1> asdasdasd </h1>";}
 ?>
 </div>
 </div>
